@@ -79,6 +79,12 @@ it was going to overwrite a file. Nifty.
 
 Right! So now we have an `application.ex` file as well.
 
+## Running Faktory
+
+I've added the `docker-compose.yml` file. To check that it is working
+I have gone to [`http://localhost:7420/`](http://localhost:7420/) to
+get the Faktory dashboard and confirm that it is working.
+
 ## Installation
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed
