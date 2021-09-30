@@ -1,5 +1,7 @@
 # FaktoryTutorial
 
+I created this repo using `mix new . --app faktory_tutorial`.
+
 Purpose of this repo is to dcoument and record my understanding how to use elixir and faktory.
 
 However, in order to understand it in the context of my job:
@@ -69,6 +71,13 @@ MyGreeterJob.perform_async(["Hello", "Genevieve"])
 ```
 
 let's add a `docker-compose.yml` file with faktory and try this out.
+
+I've just realised that I need to have a supervisor tree. To include this in the project,
+I should have included the `--sup` command. Luckily, the elixir folks had thought
+of this, so rerunning `mix new . --app faktory_tutorial --sup` just checked each time
+it was going to overwrite a file. Nifty.
+
+Right! So now we have an `application.ex` file as well.
 
 ## Installation
 
