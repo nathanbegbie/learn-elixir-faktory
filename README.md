@@ -1,5 +1,7 @@
 # FaktoryTutorial
 
+## Progress
+
 I created this repo using `mix new . --app faktory_tutorial`.
 
 Purpose of this repo is to dcoument and record my understanding how to use elixir and faktory.
@@ -34,8 +36,8 @@ There are historical and technical reasons for this, which I won't get in to her
 
 ## Getting Faktory Integrated with the Mix App
 
-Note here, that this is not a Phoenix application. This is a straightforward mix project.
-From the quickstart docs in the `faktory_worker_ex` readme, we can just do the following:
+Note that this is not a Phoenix application. This is a straightforward mix project.
+From the [quickstart docs](https://github.com/smn/faktory_worker_ex/tree/feature/combined-fixes#quickstart) in the `faktory_worker_ex` README, we will adapt the following:
 
 ```elixir
 # For enqueuing jobs
@@ -140,3 +142,25 @@ index ae5798f..03d328e 100644
 
 Okay, so let's add the final bit of the puzzle, which is a module that actually does something. We'll keep it simple at first, with a `IO.puts`
 like the site suggests, but then we can get a bit fancier.
+
+## Current State
+
+Do the following:
+
+1. `docker-compose up -d`, you should be able to visit Faktory on [`http://localhost:7420/`](http://localhost:7420/)
+1. `mix deps.get`
+1. `iex -S mix`
+1. `FaktoryTutorial.DoSomething.perform_async(["Hello", "Genevieve"])`
+1. Then open another terminal and run `mix faktory`
+
+At this point, I get the following error:
+
+```elixir
+16:54:25.248 [error] Process #PID<0.258.0> raised an exception
+** (Faktory.Error.InvalidJobType) MyGreeterJob
+    (faktory_worker_ex 0.7.0) lib/faktory/runner.ex:42: anonymous fn/2 in Faktory.Runner.handle_events/3
+```
+
+[This is where the exception is thrown](https://github.com/smn/faktory_worker_ex/blob/feature/combined-fixes/lib/faktory/runner.ex#L39-L45).
+
+I'm not sure why this is at present.
