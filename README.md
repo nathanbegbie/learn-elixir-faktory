@@ -147,6 +147,7 @@ like the site suggests, but then we can get a bit fancier.
 
 Do the following:
 
+1. `git clone git@github.com:nathanbegbie/learn-elixir-faktory.git`
 1. `docker-compose up -d`, you should be able to visit Faktory on [`http://localhost:7420/`](http://localhost:7420/)
 1. `mix deps.get`
 1. `iex -S mix`
@@ -156,8 +157,8 @@ Do the following:
 At this point, I get the following error:
 
 ```elixir
-16:54:25.248 [error] Process #PID<0.258.0> raised an exception
-** (Faktory.Error.InvalidJobType) MyGreeterJob
+16:44:40.930 [error] Process #PID<0.261.0> raised an exception
+** (Faktory.Error.InvalidJobType) FaktoryTutorial.DoSomething
     (faktory_worker_ex 0.7.0) lib/faktory/runner.ex:42: anonymous fn/2 in Faktory.Runner.handle_events/3
 ```
 
