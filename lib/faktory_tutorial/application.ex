@@ -10,6 +10,8 @@ defmodule FaktoryTutorial.Application do
     children = [
       # Starts a worker by calling: FaktoryTutorial.Worker.start_link(arg)
       # {FaktoryTutorial.Worker, arg}
+      FaktoryTutorial.FaktoryClient,
+      FaktoryTutorial.FaktoryWorker,
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
