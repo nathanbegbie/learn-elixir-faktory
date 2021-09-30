@@ -6,7 +6,7 @@ Purpose of this repo is to dcoument and record my understanding how to use elixi
 
 However, in order to understand it in the context of my job:
 
-I am using the faktory version that my work uses, so my `docker-compose.yml` setup includes:
+1. I am using the faktory version that my work uses, so my `docker-compose.yml` setup includes:
 
 ```yml
 services:
@@ -17,7 +17,7 @@ services:
       - "7420:7420"
 ```
 
-I am using their current `faktory_worker_es` version:
+2. I am using their current `faktory_worker_es` version:
 
 ```elixir
 ...
@@ -137,3 +137,6 @@ index ae5798f..03d328e 100644
 
      # See https://hexdocs.pm/elixir/Supervisor.html
 ```
+
+Okay, so let's add the final bit of the puzzle, which is a module that actually does something. We'll keep it simple at first, with a `IO.puts`
+like the site suggests, but then we can get a bit fancier.
