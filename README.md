@@ -1,6 +1,47 @@
 # FaktoryTutorial
 
-## Progress
+## Current State
+
+Do the following:
+
+1. `git clone git@github.com:nathanbegbie/learn-elixir-faktory.git`
+1. `docker-compose up -d`, you should be able to visit Faktory on [`http://localhost:7420/`](http://localhost:7420/)
+1. `mix deps.get`
+1. Then we can initiate the job in iex
+
+```bash
+$ iex -S mix
+Erlang/OTP 24 [erts-12.0.3] [source] [64-bit] [smp:8:8] [ds:8:8:10] [async-threads:1] [jit]
+
+Interactive Elixir (1.12.2) - press Ctrl+C to exit (type h() ENTER for help)
+iex(1)> FaktoryTutorial.DoSomething.perform_async(["yo", "dawg"])
+{:ok,
+%{
+  "args" => ["yo", "dawg"],
+  "backtrace" => 0,
+  "jid" => "8c077c077198e3bfda4a9862",
+  "jobtype" => "FaktoryTutorial.DoSomething",
+  "middleware" => [],
+  "queue" => "default",
+  "retry" => 25
+}}
+iex(2)>
+```
+
+5. Then open another terminal and run `mix faktory` and at this point, I get the following error:
+
+```elixir
+$ mix faktory
+16:44:40.930 [error] Process #PID<0.261.0> raised an exception
+** (Faktory.Error.InvalidJobType) FaktoryTutorial.DoSomething
+    (faktory_worker_ex 0.7.0) lib/faktory/runner.ex:42: anonymous fn/2 in Faktory.Runner.handle_events/3
+```
+
+[This is where the exception is thrown](https://github.com/smn/faktory_worker_ex/blob/feature/combined-fixes/lib/faktory/runner.ex#L39-L45).
+
+I'm not sure why this is, at present.
+
+## How I Got Here
 
 I created this repo using `mix new . --app faktory_tutorial`.
 
@@ -142,44 +183,3 @@ index ae5798f..03d328e 100644
 
 Okay, so let's add the final bit of the puzzle, which is a module that actually does something. We'll keep it simple at first, with a `IO.puts`
 like the site suggests, but then we can get a bit fancier.
-
-## Current State
-
-Do the following:
-
-1. `git clone git@github.com:nathanbegbie/learn-elixir-faktory.git`
-1. `docker-compose up -d`, you should be able to visit Faktory on [`http://localhost:7420/`](http://localhost:7420/)
-1. `mix deps.get`
-1. Then we can initiate the job in iex
-
-```bash
-$ iex -S mix
-Erlang/OTP 24 [erts-12.0.3] [source] [64-bit] [smp:8:8] [ds:8:8:10] [async-threads:1] [jit]
-
-Interactive Elixir (1.12.2) - press Ctrl+C to exit (type h() ENTER for help)
-iex(1)> FaktoryTutorial.DoSomething.perform_async(["yo", "dawg"])
-{:ok,
-%{
-  "args" => ["yo", "dawg"],
-  "backtrace" => 0,
-  "jid" => "8c077c077198e3bfda4a9862",
-  "jobtype" => "FaktoryTutorial.DoSomething",
-  "middleware" => [],
-  "queue" => "default",
-  "retry" => 25
-}}
-iex(2)>
-```
-
-5. Then open another terminal and run `mix faktory` and at this point, I get the following error:
-
-```elixir
-$ mix faktory
-16:44:40.930 [error] Process #PID<0.261.0> raised an exception
-** (Faktory.Error.InvalidJobType) FaktoryTutorial.DoSomething
-    (faktory_worker_ex 0.7.0) lib/faktory/runner.ex:42: anonymous fn/2 in Faktory.Runner.handle_events/3
-```
-
-[This is where the exception is thrown](https://github.com/smn/faktory_worker_ex/blob/feature/combined-fixes/lib/faktory/runner.ex#L39-L45).
-
-I'm not sure why this is, at present.
